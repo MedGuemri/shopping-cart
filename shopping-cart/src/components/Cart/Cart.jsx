@@ -7,7 +7,7 @@ import CartItem from './CartItem'
 const Cart = () => {
   const cartItems = useSelector((state)=>state.cart.cart)
   
-  const totalprice= cartItems.reduce((sum,item)=> sum +item.price , 0)
+  const totalprice= cartItems.reduce((sum,item)=> sum +item.price* item.quantity , 0)
  
 
  

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import {useDispatch} from "react-redux"
-import { addToCart , removeFromCart } from '../../features/cart/CartSlice'
+import {toggleFav, addToCart , removeFromCart } from '../../features/cart/CartSlice'
 import {BiCartAdd} from "react-icons/bi"
 import {RiDeleteBin6Line} from "react-icons/ri"
 import {MdOutlineFavorite} from "react-icons/md"
@@ -9,6 +9,12 @@ const ProductCard = ({product}) => {
     const [fav , setFav]= useState(false)
     const [add , setadd]= useState(false)
     const dispatch =useDispatch();
+
+
+    const handelFav =(productId) =>{
+      dispatch(toggleFav({productId}));
+      setFav(!fav)
+    }
 
     const handelAdd=()=>{
       dispatch(addToCart({productId : product.id}));
@@ -30,7 +36,7 @@ const ProductCard = ({product}) => {
 
         </div>
         <div className='h-[20%] w-full flex items-center justify-around text-slate-700 text-3xl font-semibold pt-0 '>
-            <a onClick={()=>setFav(!fav)} className={fav ?'cursor-pointer text-pink-700':'cursor-pointer hover:text-pink-700' }><MdOutlineFavorite /></a>
+            <a onClick={()=>handelFav( product.id)} className={fav ?'cursor-pointer text-pink-700':'cursor-pointer hover:text-pink-700' }><MdOutlineFavorite /></a>
 
             {
               add?
