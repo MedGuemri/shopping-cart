@@ -9,8 +9,11 @@ import Favorites from "./components/favorites/Favorites";
 import Cart from "./components/Cart/Cart";
 import Footer from "./components/footer/Footer";
 import NavBar from "./components/navbar/NavBar";
+import { useSelector } from "react-redux";
 
 function App() {
+  const  { user} = useSelector(state => state.auth);
+
   return (
     <div className="App">
       <NavBar />
@@ -23,8 +26,14 @@ function App() {
         <Route path="/Cart" element={<Cart />} />
       </Routes>
 
+
+
+
+   
       <Footer />
       <ToastContainer />
+
+
 
 
     </div>

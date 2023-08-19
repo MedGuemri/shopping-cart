@@ -53,7 +53,8 @@ const userController={
             _id:user._id,
             name:user.name,
             email:user.email,
-            token : genToken(user._id)
+            token : genToken(user._id),
+            isAdmin:user.isAdmin
         })
     },
 

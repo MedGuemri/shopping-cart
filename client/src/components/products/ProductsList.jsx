@@ -1,19 +1,30 @@
 import React, { useEffect } from 'react'
 import ProductCard from './ProductCard'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import { getProducts, reset } from '../../features/products/productsSlice'
+import AddProduct from './AddProduct'
+
+
 
 const ProductsList = () => {
-  const Products = useSelector((state)=>state.cart.Products)
+  // const Products = useSelector((state)=>state.cart.Products)
+  const {products} = useSelector((state)=>state.products).productsListe
   const {user}=useSelector((state)=>state.auth)
+  const {updated}=useSelector(state=>state.products)
   const navigate = useNavigate()
-  
+  const dispatch=useDispatch()
    useEffect(()=>{
     if(!user){
       navigate("/")
 
     }
-   })
+    
+   },[])
+   useEffect(()=>{
+    dispatch(getProducts())
+    dispatch(reset())
+   },[updated])
 
 
   return (
@@ -25,12 +36,13 @@ const ProductsList = () => {
           <div className="  grid  grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16  py-20">
 
             {
-              Products.map(product =>{
-              return <ProductCard key={product.id} product={product} />})
+              products&&products.map(product =>{ return <ProductCard key={product._id} product={product} />})
             }
               
          
           </div>
+          {user?.isAdmin===true? <AddProduct />:null} 
+         
  </div>
      
   )
