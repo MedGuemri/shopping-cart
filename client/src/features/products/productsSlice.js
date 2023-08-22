@@ -19,7 +19,16 @@ return thunkApi.rejectWithValue(error.response.data)    }
 })
 export  const delteproduct = createAsyncThunk("products/delteproduct",async(product,thunkApi)=>{
     try {
-        const {data} = await axios.delete("http://localhost:8000/api/products/deleteProduct/:id",product)
+        console.log(product)
+        const {data} = await axios.delete("http://localhost:8000/api/products/deleteProduct/"+product._id)
+    return data
+    } catch (error) {
+return thunkApi.rejectWithValue(error.response.data)    }
+})
+export  const updateProduct = createAsyncThunk("products/updateProduct",async(product,thunkApi)=>{
+    try {
+        console.log(product)
+        const {data} = await axios.post("http://localhost:8000/api/products//updateProduct/"+product._id,product)
     return data
     } catch (error) {
 return thunkApi.rejectWithValue(error.response.data)    }
@@ -72,6 +81,24 @@ export const productsSlice=createSlice({
             state.loading=false;
             state.success=false;
             state.message="delte failed"
+        }).addCase(updateProduct.fulfilled,(state,action)=>{
+            state.error=false;
+            state.updated=true;
+            state.success=true;
+            state.message="update success"
+        }).addCase(updateProduct.pending,(state,action)=>{
+            state.loading=true;
+            state.error=action.payload;
+            state.updated=true;
+            state.success=false;
+            state.message="update pending"
+
+        })
+        .addCase(updateProduct.rejected,(state,action)=>{
+            state.error=action.payload;
+            state.loading=false;
+            state.success=false;
+            state.message="update failed"
         })
 
     }

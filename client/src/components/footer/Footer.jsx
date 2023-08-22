@@ -19,14 +19,14 @@ const Footer = () => {
         <a 
         href='https://www.linkedin.com/in/mouhamed-guemri-a0016a260/' 
         target='_blank'  
-        className='text-slate-700 hover:text-blue-600 text-3xl hover:scale-105'>
+        className='text-blue-600 text-3xl hover:scale-105'>
             <BsLinkedin   />
         </a>
         
         <a 
         href="mailto:mohamedamiineguemri@gmail.com"  
         target='_blank' 
-        className='text-slate-700 hover:text-red-600 text-3xl hover:scale-105'>
+        className='text-red-600 text-3xl hover:scale-105'>
             <SiGmail   />
         </a>
 

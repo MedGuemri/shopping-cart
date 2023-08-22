@@ -8,7 +8,7 @@ import AddProduct from './AddProduct'
 
 
 const ProductsList = () => {
-  // const Products = useSelector((state)=>state.cart.Products)
+ 
   const {products} = useSelector((state)=>state.products).productsListe
   const {user}=useSelector((state)=>state.auth)
   const {updated}=useSelector(state=>state.products)
@@ -30,7 +30,7 @@ const ProductsList = () => {
   return (
      
  <div className="flex justify-center flex-col items-center ">
-          <h1 className='mt-20 font-bold text-5xl text-slate-700 bg-yellow-300 rounded-2xl p-4'>Products List</h1>
+          <h1 className='mt-20 font-bold text-5xl text-teal-700  rounded-2xl p-4'>Products List</h1>
 
 
           <div className="  grid  grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16  py-20">
